@@ -1,0 +1,293 @@
+
+//6.Escreva um programa que receba uma string e conte quantas palavras ela contém.
+//Informe ao usuário o resultado.
+
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+func main() {
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+
+	frase := scanner.Text()
+
+	palavras := strings.Fields(frase)
+
+	fmt.Printf("Essa frase tem %d palavras", len(palavras))
+
+}
+
+
+//8.Escreva um programa que receba uma string e inverta a ordem dos caracteres.
+//Informe ao usuário o resultado.
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var x string
+	fmt.Print("Digite uma string: ")
+	fmt.Scan(&x)
+
+	var reverse string
+
+	for i := len(x) - 1; i >= 0; i-- {
+		reverse = reverse + string(x[i])
+	}
+
+	fmt.Println(reverse)
+}
+
+
+//10.Escreva um programa que receba duas strings e verifique se elas são anagramas.
+//Informe ao usuário se são ou não.
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var x, y string
+	fmt.Print("Escreva duas palavras: ")
+	fmt.Scan(&x, &y)
+
+	xMapa := make(map[string]int)
+	yMapa := make(map[string]int)
+
+	for _, c := range x {
+		xMapa[string(c)]++
+	}
+
+	for _, c := range y {
+		yMapa[string(c)]++
+		
+}
+	{
+		for char, qtdX := range xMapa {
+			qtdY := yMapa[char]
+			if qtdX != qtdY {
+				fmt.Println("As palavras não são anagramas")
+				return
+			}
+		}
+	}
+	fmt.Println(xMapa)
+	fmt.Println(yMapa)
+	
+}
+
+
+//11.Escreva um programa que receba uma string e remova todas as vogais.
+//Informe ao usuário o resultado.
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	var x string
+
+	print("Escreva uma string: ")
+	fmt.Scan(&x)
+
+	vogais := []string {
+		"A",
+		"a",
+		"E",
+		"e",
+		"I",
+		"i",
+		"O",
+		"o",
+		"U",
+		"u",
+	}
+
+	for _ , vogal := range vogais {
+		x = strings.ReplaceAll(x, vogal "")
+	}
+
+	strings.ReplaceAll()
+	{
+		fmt.Println(x)
+	}
+}
+
+//12.Escreva um programa que receba uma string e verifique se ela é um palíndromo.
+//Informe ao usuário se é ou não.
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var x string
+
+	fmt.Print("Escreva uma string: ")
+	fmt.Scan(&x)
+
+	var reverse string
+
+	for i := len(x) - 1; i >= 0; i-- {
+		reverse = reverse + string(x[i])
+	}
+	{
+
+		if x == reverse {
+			fmt.Println("É palindromo")
+		} else {
+			fmt.Println("Não é palindromo")
+		}
+	}
+
+}
+
+
+//12.Solicite ao usuário uma string e informe se ela é uma sequência numérica crescente
+//(exemplo: "123" ou "4567").
+
+package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	var x string
+
+	fmt.Print("Escreva uma string: ")
+	fmt.Scan(&x)
+
+	ints := make([]int, len(x))
+	for i, c := range x {
+		var err error
+		ints[i], err = strconv.Atoi(string(c))
+		if err != nil {
+			fmt.Println("A string não é uma sequencia numerica valida")
+			return
+		}
+	}
+
+	isCrescente := true
+	for i := 0; i < len(ints)-1; i++ {
+		atual := ints[i]
+		prox := ints[i+1]
+
+		if atual >= prox {
+			isCrescente = false
+			break
+		}
+
+		if isCrescente {
+			fmt.Println("É crescente")
+		} else {
+			fmt.Println("Não é crescente")
+		}
+
+	}
+
+}
+
+//16.Solicite ao usuário uma string e informe se ela é uma sequência numérica crescente
+//(exemplo: "123" ou "4567").
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	var x, y string
+
+	fmt.Print("Escreva uma string: ")
+	fmt.Scan(&x, &y)
+
+	if strings.Contains(x, y) {
+		fmt.Println("A segunda é uma substring da primeira")
+	} else {
+		fmt.Println("Tem não nada ver")
+	}
+
+}
+
+//17.Solicite ao usuário uma string e imprima somente as suas letras únicas
+//(que aparecem apenas uma vez).
+
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var x string
+
+	fmt.Print("Escreva uma string: ")
+	fmt.Scan(&x)
+
+	var unicas []string
+
+	for i := 0; i < len(x); i++ {
+		isUnique := true
+		for j := i + 1; j < len(x); j++ {
+			if i != j && x[i] == x[j] {
+				isUnique = false
+				break
+			}
+		}
+		if isUnique {
+			unicas = append(unicas, string(x[i]))
+		}
+		fmt.Println(unicas)
+	}
+
+}
+
+
+//(DESAFIO)Escreva um programa que receba uma string e um padrão (outro string) e 
+//retorne todos os índices em que o padrão ocorre na string.
+//Informe ao usuário o resultado.
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	var x, padrao string
+	fmt.Print("Digite uma string: ")
+	fmt.Scan(&x)
+	fmt.Print("Digite um padrão: ")
+	fmt.Scan(&padrao)
+
+	var indexes []int
+
+	for i := len(x) - 1; i >= 0; i-- {
+		idx := strings.Index(x[i:], padrao)
+		if idx != -1 {
+			indexes = append(indexes, i+idx)
+		}
+	}
+	fmt.Println(indexes)
+}
